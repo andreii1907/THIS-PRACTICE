@@ -6,7 +6,7 @@ function Calculator() {
       this.x = a;
       this.y = b;
     };
-  
+
     this.add = function () {
       return this.x + this.y;
     };
@@ -21,84 +21,45 @@ function Calculator() {
   
     this.divide = function () {
       if (this.y === 0) {
-        return "Nu se poate calcula";
+        return console.log("Nu se poate calcula");
       }
       return this.x / this.y;
     };
   }
   
-  // const calculator = new Calculator();
-  
-  // calculator.read(6, 2);
-  
-  // console.log(calculator.add());
-  // console.log(calculator.diff());
-  // console.log(calculator.multiply());
-  // console.log(calculator.divide());
-  
-  // calculator.read(20, 0);
-  
-  // console.log(calculator.add());
-  // console.log(calculator.diff());
-  // console.log(calculator.multiply());
-  // console.log(calculator.divide());
+const calculator = new Calculator();
 
 const firstOperator = document.getElementById('operator1');
 const secondOperator = document.getElementById('operator2');
 const result = document.getElementById('result');
-  
-const adding = document.getElementById('add');
-adding.addEventListener('click',function() {
-    result.value= "";
+
+function calculating(calc) {
+    result.value = "";
     calculator.read(Number(firstOperator.value), Number(secondOperator.value));
     if (firstOperator.value === "" || secondOperator.value === "") {
       return console.log('you must enter both operators');
-    }
-    result.value = Number(result.value) + calculator.add();
+    } 
+    result.value = Number(result.value) + calc;
     firstOperator.value = "";
     secondOperator.value = "";
-});
+};
+  
+const adding = document.getElementById('add');
+  adding.addEventListener('click',function() {
+    calculating(calculator.add());
+  });
 
 const substraction = document.getElementById('sub');
   substraction.addEventListener('click',function() {
-    result.value= "";
-    calculator.read(Number(firstOperator.value), Number(secondOperator.value));
-    if (firstOperator.value === "" || secondOperator.value === "") {
-      return console.log('you must enter both operators');
-    } 
-    console.log(result.value);
-    result.value = Number(result.value) + calculator.diff();
-    firstOperator.value = "";
-    secondOperator.value = "";
-});
+    calculating(calculator.diff());
+  });
 
 const multipling = document.getElementById('mul');
   multipling.addEventListener('click',function() {
-    result.value= "";
-    calculator.read(Number(firstOperator.value), Number(secondOperator.value));
-    if (firstOperator.value === "" || secondOperator.value === "") {
-      return console.log('you must enter both operators');
-    } 
-    console.log(result.value);
-    result.value = Number(result.value) + calculator.multiply();
-    firstOperator.value = "";
-    secondOperator.value = "";
-});
+    calculating(calculator.multiply());
+  });
 
 const dividing = document.getElementById('div');
   dividing.addEventListener('click',function() {
-    result.value= "";
-    calculator.read(Number(firstOperator.value), Number(secondOperator.value));
-    if (firstOperator.value === "" || secondOperator.value === "") {
-      return console.log('you must enter both operators');
-    } 
-    console.log(result.value);
-    result.value = Number(result.value) + calculator.divide();
-    firstOperator.value = "";
-    secondOperator.value = "";
-});
-
-
-
-
- 
+    calculating(calculator.divide());
+  });
